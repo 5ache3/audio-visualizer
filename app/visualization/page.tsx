@@ -13,7 +13,7 @@ export default function Page() {
         
       const audio = new Audio(URL.createObjectURL(file));
       audio.loop = false;  
-      audio.volume = 0.7;     
+      audio.volume = 0.4;     
       audio.play().catch(() => {
         console.warn("Autoplay failed.");
       });

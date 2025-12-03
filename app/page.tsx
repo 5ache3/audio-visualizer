@@ -24,7 +24,7 @@ export default function Home() {
   const handleFile = (file: File | null) => {
     if (!file) return;
     setFile(file);           
-    router.push("/audio");
+    router.push("/visualization");
   };
 
   return (
