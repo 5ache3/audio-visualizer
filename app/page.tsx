@@ -22,10 +22,22 @@ export default function Home() {
   };
 
   const handleFile = (file: File | null) => {
-    if (!file) return;
-    setFile(file);           
-    router.push("/visualization");
-  };
+  if (!file) return;
+
+  const audioState = useAudioStore.getState();
+
+  if (audioState.audioContext && audioState.audioContext.state !== "closed") {
+    audioState.audioContext.close();
+  }
+
+  audioState.setAudioContext(null);
+  audioState.setAnalyser(null);
+  audioState.setSource(null);
+  audioState.setIsPlaying(false);
+
+  setFile(file);
+  router.push("/visualization");
+};
 
   return (
     <div className="flex min-h-screen items-center justify-center font-sans">
