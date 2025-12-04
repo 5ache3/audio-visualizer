@@ -1,0 +1,44 @@
+// store/audio.ts
+import { create } from 'zustand';
+
+interface AudioState {
+  file: File | null;
+  audioContext: AudioContext | null;
+  analyser: AnalyserNode | null;
+  source: MediaElementAudioSourceNode | null;
+  isPlaying: boolean;
+  displaying: boolean;
+  currentTime: number;
+  duration: number;
+  waveformData: Uint8Array;
+  setFile: (file: File | null) => void;
+  setAudioContext: (context: AudioContext | null) => void;
+  setAnalyser: (analyser: AnalyserNode | null) => void;
+  setSource: (source: MediaElementAudioSourceNode | null) => void;
+  setIsPlaying: (isPlaying: boolean) => void;
+  setDisplaying: (displaying: boolean) => void;
+  setCurrentTime: (time: number) => void;
+  setDuration: (duration: number) => void;
+  setWaveformData: (data: Uint8Array) => void;
+}
+
+export const useAudioStore = create<AudioState>((set) => ({
+  file: null,
+  audioContext: null,
+  analyser: null,
+  source: null,
+  isPlaying: false,
+  displaying: true,
+  currentTime: 0,
+  duration: 0,
+  waveformData: new Uint8Array(),
+  setFile: (file) => set({ file }),
+  setAudioContext: (audioContext) => set({ audioContext }),
+  setAnalyser: (analyser) => set({ analyser }),
+  setSource: (source) => set({ source }),
+  setIsPlaying: (isPlaying) => set({ isPlaying }),
+  setDisplaying: (displaying) => set({ displaying }),
+  setCurrentTime: (currentTime) => set({ currentTime }),
+  setDuration: (duration) => set({ duration }),
+  setWaveformData: (waveformData) => set({ waveformData }),
+}));
